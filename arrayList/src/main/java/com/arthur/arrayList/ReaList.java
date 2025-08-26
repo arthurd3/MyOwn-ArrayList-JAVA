@@ -25,13 +25,11 @@ public class ReaList<T> {
 
     }
 
-    public void extendSize(){
+    private void extendSize(){
         if(size == this.elements.length){
             T[] newSize = (T[]) new Object[this.elements.length * 2];
 
-            for(int i=0; i<size; i++){
-                newSize[i] = elements[i];
-            }
+            System.arraycopy(elements, 0, newSize, 0, size);
 
             this.elements = newSize;
         }

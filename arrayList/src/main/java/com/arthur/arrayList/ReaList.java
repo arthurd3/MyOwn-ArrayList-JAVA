@@ -11,7 +11,7 @@ public class ReaList<T> {
     }
 
     public boolean add(final T value) {
-        extendSize();
+        this.extendSize();
         if(size <  elements.length) {
             elements[size] = value;
             size++;
@@ -20,11 +20,13 @@ public class ReaList<T> {
         return false;
     }
 
-    public T add(final int index, final T value) {
-        extendSize();
-
+    public T set(final int index, final T value) {
+        this.checkIndex(index);
+        T oldValue = this.elements[index];
+        this.elements[index] = value;
+        return oldValue;
     }
-    
+
     public T find(final int index) {
         this.checkIndex(index);
         return elements[index];
@@ -38,6 +40,13 @@ public class ReaList<T> {
     public T findLast() {
         this.checkEmpty();
         return elements[size - 1];
+    }
+
+    public boolean remove(final int index) {
+        this.checkIndex(index);
+        this.checkEmpty();
+        elements[index] = null;
+        return true;
     }
 
     private void extendSize(){
